@@ -3,9 +3,6 @@
 # For ease of marking the code has been split into the 5 steps listed in the assignment
 # Code has been commented throughout to assist with understanding
 
-## Load packages
-library(data.table)
-
 ## Get raw data - load in all the text files, no/minimal manipulation in this section
 features <- read.table("UCI HAR Dataset/features.txt",stringsAsFactors = FALSE,sep="",col.names = c("Index","FeatureName"))
 
@@ -29,7 +26,7 @@ colnames(MergedData)[3:ncol(MergedData)]<- features[,2] #rename cols based on fe
 
 
 ## 2) Extracts only the measurements on the mean and standard deviation for each measurement
-# I will also keep the SubjectID and Activity columns as these will be of use later
+# I will also keep the SubjectID and Activity columns as these will/could be of use later
 WantedData <- MergedData[grep("SubjectID|Activity|mean\\(\\)|std\\(\\)",names(MergedData))]
 
 ## 3) Uses descriptive activity names to name the activities in the data set
@@ -41,7 +38,11 @@ for (activity in 1:nrow(activity_labels)){
 
 
 ## 4) Appropriately labels the data set with descriptive variable names
-
+# This has already been started in steps 1 and 3
+# For some final tidying up I have chosen to remove the () found in a lot of the feature names
+NewNames <- gsub("\\(\\)","",names(WantedData))
+colnames(WantedData)<-c(NewNames)
 
 ## 5) From the data set in step 4, creates a second, independent tidy data set with the average
 ## of each variable for each activity and each subject
+write.table(WantedData,"TidyData.txt",row.names = FALSE,sep="\t")
