@@ -26,7 +26,7 @@ colnames(MergedData)[3:ncol(MergedData)]<- features[,2] #rename cols based on fe
 
 
 ## 2) Extracts only the measurements on the mean and standard deviation for each measurement
-# I will also keep the SubjectID and Activity columns as these will/could be of use later
+# I will also keep the SubjectID and Activity columns as these will be of use later
 WantedData <- MergedData[grep("SubjectID|Activity|mean\\(\\)|std\\(\\)",names(MergedData))]
 
 ## 3) Uses descriptive activity names to name the activities in the data set
@@ -45,4 +45,6 @@ colnames(WantedData)<-c(NewNames)
 
 ## 5) From the data set in step 4, creates a second, independent tidy data set with the average
 ## of each variable for each activity and each subject
-write.table(WantedData,"TidyData.txt",row.names = FALSE,sep="\t")
+TidyData <- aggregate(x=WantedData[,3:ncol(WantedData)],by=list(SubjectID=WantedData$SubjectID,Activity=WantedData$Activity),FUN="mean")
+
+write.table(TidyData,"TidyData.txt",row.names = FALSE,sep="\t")
