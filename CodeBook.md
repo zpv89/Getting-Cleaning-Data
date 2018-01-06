@@ -1,5 +1,5 @@
 ## Getting and Cleaning Data Project
-======
+
 
 Author: zpv89
 
@@ -9,7 +9,7 @@ This file is a summary of the data in the final output of run_analysis.R "TidyDa
 
 ### Brief outline
 The run_analysis.R code is fully commented to explain what it does at each step.
-As a summary, the code reads in the raw data [description of data and source can be found in the README.md file of this repository] from the training and testing folders, and merges these together to create a full set of data. Then the measurement means and standard deviations (columns) are extraced to create a subset of the raw data. Finally the averages for each measurement type is calculated per subject and activity type are calculated and the results aggregated into the finaal tidy dataset writen to the text file. 
+As a summary, the code reads in the raw data [description of data and source can be found in the README.md file of this repository] from the training and testing folders, and merges these together to create a full set of data. Then the measurement means and standard deviations (columns) are extracted to create a subset of the raw data. Finally the averages for each measurement type is calculated per subject and activity type are calculated and the results aggregated into the finaal tidy dataset writen to the text file. 
 
 ### Final Data Frame Variable Names
 #### Identifiers [non measured data]
